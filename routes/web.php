@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function(){
+	$posts = App\Post::all();
+	return view('homepage', [
+			'dsBaiViet' => $posts
+	]);
 });
 
-Route::get('/detail', 'HomeController@index');
