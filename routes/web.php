@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 /*
 |--------------------------------------------------------------------------
@@ -12,14 +12,7 @@
 */
 
 use Illuminate\Http\Request;
-Route::get('/', function(Request $request){
-	// 1. Lấy keyword từ đường dẫn
-	dd($request->keyword);
-	// 2. thực hiện câu lệnh select * from posts where title like %keyword%
+Route::get('/', 'PostController@homepage')->name('homepage');
+Route::get('post-remove/{id}', 'PostController@remove')->name('post.remove');
 
-	$posts = App\Post::all();
-	return view('homepage', [
-			'dsBaiViet' => $posts
-	]);
-});
-
+Route::get('add', 'PostController@addForm')->name('post.add');
