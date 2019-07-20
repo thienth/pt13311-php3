@@ -16,3 +16,25 @@ Route::get('/', 'PostController@homepage')->name('homepage');
 Route::get('post-remove/{id}', 'PostController@remove')->name('post.remove');
 
 Route::get('add', 'PostController@addForm')->name('post.add');
+
+Route::get('demo-view', function(){
+	$name = '<h2>nguyen van a</h2>';
+	$age = 50;
+	$address = '15 dong quan';
+
+	$arr = [
+		"nguyen van b",
+		"tran van C",
+		"luong van d",
+		"le van e"
+	];
+	return view('test-view', compact('name', 'age', 'address', 'arr'));
+	// [
+	// 	'name' => $name,
+	// 	'age' => $age
+	// ]
+});
+
+Route::get('test-v2', function(){
+	return view('layouts.main');
+});
