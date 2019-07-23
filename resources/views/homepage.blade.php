@@ -5,7 +5,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Responsive Hover Table</h3>
+          <h3 class="box-title">Posts</h3>
 
           <div class="box-tools">
             <form action="" method="get">
@@ -23,7 +23,15 @@
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tbody>
-                @foreach($dsBaiViet as $item)
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Image</th>
+              <th>
+                  <a href="" class="btn btn-sm btn-success">Add</a>
+              </th>
+            </tr>
+            @foreach($dsBaiViet as $item)
                 <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->title}}</td>
@@ -44,27 +52,4 @@
       <!-- /.box -->
     </div>
   </div>
-{{-- <form action="" method="get">
-    <input type="text" name="keyword">
-    <button type="submit">Tìm kiếm</button>
-</form>
-<a href="{{route('post.add')}}" title="">Tạo mới</a>
-<table>
-    
-    <tbody>
-        @foreach($dsBaiViet as $item)
-        <tr>
-            <td>{{$item->id}}</td>
-            <td>{{$item->title}}</td>
-            <td>
-                <img src="{{$item->image}}" width="100" >
-            </td>
-            <td>
-                <a href="{{route('post.remove', 
-                ['id' => $item->id])}}" title="">Xoa</a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table> --}}
 @endsection
