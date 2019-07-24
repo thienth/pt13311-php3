@@ -17,6 +17,11 @@ Route::get('post-remove/{id}', 'PostController@remove')->name('post.remove');
 
 Route::get('add', 'PostController@addForm')->name('post.add');
 
+Route::get('cate/{id}', function($id){
+	$cate = App\Category::find($id);
+	dd(count($cate->posts));
+});
+
 Route::get('demo-view', function(){
 	$name = '<h2>nguyen van a</h2>';
 	$age = 50;

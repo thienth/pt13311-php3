@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
     public function homepage(Request $request){
@@ -26,10 +27,20 @@ class PostController extends Controller
     }
 
     public function remove($id){
-    	$model = Post::find($id);
-		if($model){
-			$model->delete();
-		}
+    	DB::beginTransaction();
+    	try{
+
+			$model = Post::find($id);
+			if($model){
+				$model->delete();
+				DB::commit();
+			}
+			
+    	}catch(Exception $ex){
+    		// ghi log lỗi lại
+    		DB::rollback();
+    	}
+    	
 
 		return redirect(route('homepage'));
     }

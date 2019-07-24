@@ -26,6 +26,7 @@
             <tr>
               <th>ID</th>
               <th>Title</th>
+              <th>Category name</th>
               <th>Image</th>
               <th>
                   <a href="" class="btn btn-sm btn-success">Add</a>
@@ -35,6 +36,7 @@
                 <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->title}}</td>
+                    <td>{{$item->category->name}}</td>
                     <td>
                         <img src="{{$item->image}}" width="100" >
                     </td>
