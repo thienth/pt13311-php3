@@ -11,10 +11,13 @@ class PostController extends Controller
 		$kw = $request->keyword; 
 		// 2. thực hiện câu lệnh select * from posts where title like %keyword%
 		if(!$request->has('keyword') || empty($kw)){
-			$posts = Post::all();	
+			$posts = Post::paginate(5);	
 		}else{
 			$posts = Post::where('title', 'like', "%$kw%")
-								->get();
+								->paginate(5);
+			// thêm tham số đường dẫn keyword khi người dùng
+			// có tìm kiếm để tránh lỗi phân trang
+			$posts->withPath("?keyword=$kw");
 		}
 		
 		return view('homepage', [

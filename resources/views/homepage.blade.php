@@ -43,7 +43,12 @@
                         ['id' => $item->id])}}" class="btn btn-sm btn-danger" title="">Xoa</a>
                     </td>
                 </tr>
-                @endforeach
+              @endforeach 
+              <tr>
+                <td colspan="4" class="text-center">
+                  {{ $dsBaiViet->links() }}
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
