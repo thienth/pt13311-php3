@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
@@ -46,8 +47,8 @@ class PostController extends Controller
     }
 
     public function addForm(){
-    	$model = new Post();
+    	$cates = Category::all();
 
-    	return view('post.add-form', compact('model'));
+    	return view('post.add-form', compact('cates'));
     }
 }
