@@ -51,4 +51,31 @@ class PostController extends Controller
 
     	return view('post.add-form', compact('cates'));
     }
+
+    public function saveAdd(Request $request){
+    	$model = new Post();
+    	$model->title = $request->title;
+    	$model->content = $request->content;
+    	$model->author = $request->author;
+    	$model->publish_date = $request->publish_date;
+    	$model->cate_id = $request->cate_id;
+    	$model->status = $request->status;
+    	$model->save();
+
+    	return redirect()->route('homepage');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

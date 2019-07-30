@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('content')
-<form action="" method="post" enctype="multipart/form-data" novalidate>
+<form action="{{route('post.add')}}" method="post" enctype="multipart/form-data" novalidate>
+	@csrf
 	<div class="form-group">
 		<label for="">Tiêu đề</label>
 		<input type="text" name="title" class="form-control" value="" placeholder="">
