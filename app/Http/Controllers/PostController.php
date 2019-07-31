@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\AddPostRequest;
 class PostController extends Controller
 {
     public function homepage(Request $request){
@@ -52,10 +53,21 @@ class PostController extends Controller
     	return view('post.add-form', compact('cates'));
     }
 
-    public function saveAdd(Request $request){
+    public function saveAdd(AddPostRequest $request){
+
     	$model = new Post();
     	$model->fill($request->all());
-    	$model->save();
+
+    	DB::beginTransaction();
+    	try{
+
+			$model->save();
+			DB::commit();
+    	}catch(Exception $ex){
+    		// ghi log lỗi lại
+    		DB::rollback();
+    	}
+    	
 
     	return redirect()->route('homepage');
     }
