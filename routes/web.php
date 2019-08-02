@@ -8,3 +8,9 @@ Route::get('post/add', 'PostController@addForm')->middleware('auth')->name('post
 Route::post('post/add', 'PostController@saveAdd')->middleware('auth');
 
 Route::get('cp-login', 'Auth\LoginController@loginForm')->name('login');
+Route::post('cp-login', 'Auth\LoginController@postLogin');
+
+Route::get('logout', function(){
+	Auth::logout();
+	return redirect()->route('login');
+})->name('logout');
