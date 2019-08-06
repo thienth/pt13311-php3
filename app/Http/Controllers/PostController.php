@@ -57,6 +57,18 @@ class PostController extends Controller
 
     	$model = new Post();
     	$model->fill($request->all());
+        if($request->hasFile('image')){
+
+            // lấy tên gốc của ảnh
+            $filename = $request->image->getClientOriginalName();
+            // thay thế ký tự khoảng trắng bằng ký tự '-'
+            $filename = str_replace(' ', '-', $filename);
+            // thêm đoạn chuỗi không bị trùng đằng trước tên ảnh
+            $filename = uniqid() . '-' . $filename;
+            // lưu ảnh và trả về đường dẫn
+            $path = $request->file('image')->storeAs('posts', $filename);
+            $model->image = "images/$path";
+        }
 
     	DB::beginTransaction();
     	try{
